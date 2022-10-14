@@ -30,19 +30,32 @@ var wording = map[int]string{
 	12: "twelfth",
 }
 
-func Verse(i int) string {
-	// Тут має бути рішення
-	// написавши код - необхідно запустити тести
-	// Ці коментарі можна видаляти
-	// !ВАЖЛИВО - не забудьте виправити return
-	return ""
+func Verse(j int) string {
+	accum := ""
+
+	for i := 1; i <= j; i++ {
+		if i == 1 {
+			accum = verse[wording[i]]
+		} else if i == 2 {
+			accum = verse[wording[i]] + ", and " + accum
+		} else {
+			accum = verse[wording[i]] + ", " + accum
+		}
+	}
+
+	return "On the " + wording[j] + " day of Christmas my true love gave to me, " + accum
 }
 
 func Song() string {
-	var song = ""
-	// Тут має бути рішення
-	// написавши код - необхідно запустити тести
-	// Ці коментарі можна видаляти
-	// !ВАЖЛИВО - не забудьте виправити return
+	song := ""
+
+	for i := 1; i <= len(wording); i++ {
+		song = song + Verse(i)+ "\n"
+	}
+	
 	return song
+}
+
+func main() {
+	Song()
 }
